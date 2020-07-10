@@ -1,0 +1,32 @@
+var total_case = {'서울':0,'부산':0,'대구':0,'인천':0,'광주':0,'대전':0,'울산':0,'세종':0,'경기':0,'강원':0,'충청북도':0,'충청남도':0,'전라북도':0,'전라남도':0,'경상북도':0,'경상남도':0,'제주도':0};
+var new_case = {'서울':0,'부산':0,'대구':0,'인천':0,'광주':0,'대전':0,'울산':0,'세종':0,'경기':0,'강원':0,'충청북도':0,'충청남도':0,'전라북도':0,'전라남도':0,'경상북도':0,'경상남도':0,'제주도':0};
+var city_death = {'서울':0,'부산':0,'대구':0,'인천':0,'광주':0,'대전':0,'울산':0,'세종':0,'경기':0,'강원':0,'충청북도':0,'충청남도':0,'전라북도':0,'전라남도':0,'경상북도':0,'경상남도':0,'제주도':0};
+
+
+[].forEach.call(document.querySelectorAll('path.land'), function(item) {
+// item.addEventListener('click', function(){
+//   var sel =this
+//   });
+
+item.addEventListener('mouseenter', function() {
+
+      $('#info-box').css('display','block');
+      document.getElementById('info-box').innerHTML=this.getAttribute("title") + "<br />" + "확진자: " + total_case[(this.getAttribute("title"))] + "+" + new_case[(this.getAttribute("title"))]
+      +"<br />" + "사망자: " + city_death[(this.getAttribute("title"))]
+
+});
+item.addEventListener('mouseleave', function(){
+  $('#info-box').css('display','none');
+});
+})
+
+const map = document.getElementById("map");
+map.addEventListener('mousemove', e => {
+      x = e.offsetX+"px";
+      y = (e.offsetY+30)+"px";
+      document.getElementById("info-box").style.top = y;
+      document.getElementById("info-box").style.left = x;
+  });
+  
+
+
